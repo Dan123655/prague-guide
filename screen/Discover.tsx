@@ -1,15 +1,18 @@
 import { View, Text, SafeAreaView,Image} from 'react-native'
-import React, { useLayoutEffect, } from 'react'
+import React, { useLayoutEffect, useState } from 'react'
 import { useNavigation } from '@react-navigation/native';
 import { StatusBar } from 'expo-status-bar';
-import { Avatar } from '../assets';
+import { Avatar, Hotels } from '../assets';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 import { mykey } from '../key'; 
+import { ScrollView } from 'react-native';
+import MenuContainer from '../components/MenuContainer';
+
 
 
 
 const Discover = () => {
-
+    const [type, setType] = React.useState('restaurants')
 console.log(mykey.key)
 const city:string='Prague, '
       const navigation = useNavigation();
@@ -38,23 +41,35 @@ const city:string='Prague, '
         </View>
         <StatusBar style="dark" hidden={false} />
         <View className="flex-row items-center justify-center bg-white mx-4 my-2 rounded-xl py-1 px-4">
-                <GooglePlacesAutocomplete
-                    enablePoweredByContainer={false}
-                    GooglePlacesDetailsQuery={{fields:'geometry'}}
-                    placeholder="Search"
-                    fetchDetails={true}
+          <GooglePlacesAutocomplete
+            enablePoweredByContainer={false}
+            GooglePlacesDetailsQuery={{ fields: "geometry" }}
+            placeholder="Search"
+            fetchDetails={true}
             onPress={(data, details = null) => {
               // 'details' is provided when fetchDetails = true
-                console.log(details?.geometry?.viewport)
+              console.log(details?.geometry?.viewport);
             }}
             query={{
               key: mykey.key,
-                language: "en",
-                components: 'country:cz',
-                
+              language: "en",
+              components: "country:cz",
             }}
           />
         </View>
+        <ScrollView>
+                <View className="flex-row items-center justify-center px-8 mt-8">
+                    <MenuContainer
+                        
+                        key={'hotel'}
+                            title='Hotels'
+                        imageSrc={Hotels}
+                            type={type}
+                            setType={setType}
+
+                    />
+          </View>
+        </ScrollView>
       </SafeAreaView>
     );
 }
