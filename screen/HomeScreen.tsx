@@ -1,18 +1,31 @@
 import { View, Text,SafeAreaView,Image } from 'react-native'
 import React,{useLayoutEffect, } from 'react'
-import { useNavigation } from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
 import { StatusBar } from 'expo-status-bar';
 import { HeroImage } from '../assets';
 import { TouchableOpacity } from 'react-native';
 import * as Animatable from 'react-native-animatable'
+import Discover from './Discover';
+
+
+
+
 
 const HomeScreen = () => {
+
+
+
+
+
+
+
     const navigation = useNavigation();
     useLayoutEffect(() => {
         navigation.setOptions({
+            
             headerShown:false,
         })
-    })
+    },[])
     return (
       
         <SafeAreaView className='bg-yellow-300 flex-1 relative'>
@@ -48,8 +61,10 @@ const HomeScreen = () => {
                     className='w-full h-full object-cover' />
                 
                
-                <TouchableOpacity className='absolute bottom-20 w-24 h-24 border-l-2 
-                border-r-2 border-t-4 border-[#00BCC9] rounded-full items-center justify-center'>
+                <TouchableOpacity className='absolute bottom-20 w-24 h-24 border-l-2             
+                border-r-2 border-t-4 border-[#00BCC9] rounded-full items-center justify-center'
+                    onPress={() => navigation.navigate("Discover")}
+                >
                         <Animatable.View
                             animation="pulse" easing="ease-in-out"
                             iterationCount="infinite"
@@ -62,7 +77,7 @@ const HomeScreen = () => {
 
 
             </View>
-
+            <StatusBar style='dark' hidden={false} />
             </SafeAreaView>
 
     )
