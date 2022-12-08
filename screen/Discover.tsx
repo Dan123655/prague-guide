@@ -21,20 +21,27 @@ const Discover = () => {
     const [isLoading, setIsLoading] = useState<boolean>(false)
     const [mainData, setMainData] = useState<any>()
     const navigation = useNavigation();
- 
+    const [bl_lat, setBl_lat] = useState<any>(null)
+    const [bl_lng, setBl_lng] = useState<any>(null)
+    const [tr_lat, setTr_lat] = useState<any>(null)
+    const [tr_lng, setTr_lng] = useState<any>(null)
     
     useEffect(() => {
         setIsLoading(true);
-        getPlacesData().then(data => {
+        getPlacesData(bl_lat,tr_lat,bl_lng,tr_lng,type).then(data => {
             setMainData(data);
 
        
             setInterval(() => {
                 setIsLoading(false);
-            }, 1500);
+            }, 3000);
         });
-     }, [])
-     
+     }, [bl_lat,tr_lat,bl_lng,tr_lng,type])
+     useLayoutEffect(() => {
+        navigation.setOptions({
+            headerShown: false,
+        })
+    }, [])
 
 
     return (
@@ -45,7 +52,7 @@ const Discover = () => {
               Discover
             </Text>
             <Text className="text-[#527273] text-[36px]">
-              bratats near you
+              some shit
             </Text>
           </View>
           <View className="w-12 h-12 bg-gray-400 rounded-md items-center justify-center">
@@ -64,7 +71,11 @@ const Discover = () => {
             fetchDetails={true}
             onPress={(data, details = null) => {
               // 'details' is provided when fetchDetails = true
-              console.log(details?.geometry?.viewport);
+                console.log(details?.geometry?.viewport);
+                setBl_lat(details?.geometry?.viewport?.southwest?.lat)
+                setBl_lng(details?.geometry?.viewport?.southwest?.lng)
+                setTr_lat(details?.geometry?.viewport?.northeast?.lat)
+                setTr_lng(details?.geometry?.viewport?.northeast?.lng)
             }}
             query={{
               key: mykey.key,
@@ -82,7 +93,7 @@ const Discover = () => {
                 <View className="flex-row items-center justify-between px-8 mt-4">
                     <MenuContainer
                         
-                        key={'hotel'}
+                        key={'hotels'}
                             title='Hotels'
                         imageSrc={Hotels}
                             type={type}
