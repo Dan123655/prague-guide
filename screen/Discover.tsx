@@ -34,7 +34,7 @@ const Discover = () => {
        
             setInterval(() => {
                 setIsLoading(false);
-            }, 3000);
+            }, 2700);
         });
      }, [bl_lat,tr_lat,bl_lng,tr_lng,type])
      useLayoutEffect(() => {
@@ -45,25 +45,25 @@ const Discover = () => {
 
 
     return (
-      <SafeAreaView className="flex-1 bg-blue-100 relative">
+      <SafeAreaView className="flex-1 bg-slate-100 relative">
         <View className="flex-row items-center justify-between px-8 pt-8">
           <View>
             <Text className="text-[40px] text-[#0B646B] font-bold">
-              Discover
+              Find
             </Text>
-            <Text className="text-[#527273] text-[36px]">
-              some shit
+            <Text className="text-[#527273] text-[36px] mb-4">
+              new places
             </Text>
           </View>
-          <View className="w-12 h-12 bg-gray-400 rounded-md items-center justify-center">
+          {/* <View className="w-12 h-12 bg-gray-400 rounded-md items-center justify-center">
             <Image
               source={Avatar}
               className="w-full h-full rounded-md object-cover"
             ></Image>
-          </View>
+          </View> */}
         </View>
         <StatusBar style="dark" hidden={false} />
-        <View className="flex-row items-center justify-center bg-white mx-4 my-2 rounded-xl py-1 px-4">
+        <View className="flex-row items-center justify-center shadow-lg bg-white mx-4 my-2 rounded-xl py-1 px-4">
           <GooglePlacesAutocomplete
             enablePoweredByContainer={false}
             GooglePlacesDetailsQuery={{ fields: "geometry" }}
@@ -95,7 +95,7 @@ const Discover = () => {
                         
                         key={'hotels'}
                             title='Hotels'
-                        imageSrc={Hotels}
+                        imageSrc={'hotel'}
                             type={type}
                             setType={setType}
 
@@ -104,7 +104,7 @@ const Discover = () => {
                         
                         key={'attractions'}
                             title='Attractions'
-                        imageSrc={Attractions}
+                        imageSrc={'monument'}
                             type={type}
                             setType={setType}
 
@@ -113,7 +113,7 @@ const Discover = () => {
                         
                         key={'restaurants'}
                             title='Restaurants'
-                        imageSrc={Restaurants}
+                        imageSrc={'coffee'}
                             type={type}
                             setType={setType}
 
@@ -121,25 +121,28 @@ const Discover = () => {
                 </View>
                 <View>
                     <View className='flex-row items-center justify-between px-8 mt-8'>
-                        <Text className='text-[#2C7379] text-[28px] font-bold'>Top Tips</Text>
+                        <Text className='text-[#2C7379] text-[28px] font-bold'>Places near you</Text>
                         <TouchableOpacity className='flex-row items-center justify-center space-x-2'>
-                            <Text className='text-[#A0C4C7] text-[20px] font-bold'>Explore</Text>
+                            <Text className='text-[#A0C4C7] text-[20px] font-bold'>View liked</Text>
                             <FontAwesome name='long-arrow-right' size={24} color='#A0C4C7'/>
                         </TouchableOpacity>
                     </View>
                     <View className='px-0 mt-8 flex-row items-center justify-evenly flex-wrap'>
 
                             {mainData?.length > 0 ? <>
-                                {mainData?.map((data:any,i:number) => (
-                                    <ItemCardContainer
+                  {mainData?.map((data: any, i: number) => {
+                    if(data?.photo?.images?.medium?.url){
+                    return ( <ItemCardContainer
                                         key={i}
-                                        imageSrc={data?.photo?.images.medium.url ? data?.photo?.images.medium.url :
-                                            'https://user-images.githubusercontent.com/24848110/33519396-7e56363c-d79d-11e7-969b-09782f5ccbab.png'}
+                                        imageSrc={data.photo.images.medium.url}
+                                        // imageSrc={data?.photo?.images?.medium?.url ? data.photo.images.medium.url :
+                                        // 'https://user-images.githubusercontent.com/24848110/33519396-7e56363c-d79d-11e7-969b-09782f5ccbab.png'}
                                         title={data?.name}
                                         location={data?.location_string}
-                                        data={data} />
-
-                                ))}
+                                        data={data} />)
+                                      
+                    } 
+                  })}
                             </> :
                                 <>
                                         <View className='w-full h-[600px] items-center space-y-8 justify-center'>

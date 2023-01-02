@@ -26,7 +26,7 @@ const getPlacesData = async (
           tr_longitude: tr_lng ? tr_lng : "14.256744",
           restaurant_tagcategory_standalone: "10591",
           restaurant_tagcategory: "10591",
-          limit: "10",
+          limit: "20",
           currency: "USD",
           open_now: "false",
           lunit: "km",
