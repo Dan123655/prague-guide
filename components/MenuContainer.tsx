@@ -14,7 +14,7 @@ const MenuContainer = ({ title, imageSrc, setType, type }: MenuContainerProps, {
   return (
     <TouchableOpacity className='items-center justify-center space-y-1' onPress={handlePress}>
       <View className={`w-20 h-20 rounded-full items-center justify-center ${ type === title.toLowerCase()? 'w-23 h-23' : ""}`}>
-        <FontAwesome5 name={imageSrc} size={34} className={`w-full h-full object-contain  ${type === title.toLowerCase()?'opacity-100':'opacity-80'}`} />
+        <FontAwesome5 name={imageSrc} size={34} color={'black'} className={`w-full h-full object-contain  ${type === title.toLowerCase()?'opacity-100':'opacity-80'}`} />
       </View>
       <Text className={`text-xl fixed ${type === title.toLowerCase()?'font-bold text-[#00BCC9]':'text-[#71acb0]'}`}>{ title}</Text>
 </TouchableOpacity>

@@ -27,7 +27,9 @@ const Discover = () => {
     const [tr_lng, setTr_lng] = useState<any>(null)
     
     useEffect(() => {
-        setIsLoading(true);
+      setIsLoading(true);
+             console.log('i fetched')
+
         getPlacesData(bl_lat,tr_lat,bl_lng,tr_lng,type).then(data => {
             setMainData(data);
 
@@ -38,11 +40,10 @@ const Discover = () => {
         });
      }, [bl_lat,tr_lat,bl_lng,tr_lng,type])
      useLayoutEffect(() => {
-        navigation.setOptions({
-            headerShown: false,
-        })
-    }, [])
-
+       navigation.setOptions({
+         headerShown: false,
+       });
+    }, [type])
 
     return (
       <SafeAreaView className="flex-1 bg-slate-100 relative">
@@ -146,7 +147,7 @@ const Discover = () => {
                             </> :
                                 <>
                                         <View className='w-full h-[600px] items-center space-y-8 justify-center'>
-                                        <Image source={NotFound} className='w-32 h-32 object-cover' />
+                                        {/* <Image source={NotFound} className='w-32 h-32 object-cover' /> */}
                                         <Text className='text-2xl text-[#328288] font-semibold'>
                                             Oops.. check your internet connection
                                         </Text>
