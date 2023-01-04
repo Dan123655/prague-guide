@@ -1,6 +1,6 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import React, { Dispatch, SetStateAction } from 'react'
-import {ImageSourcePropType } from "react-native"
+import React, { Dispatch, SetStateAction } from 'react';
+// import {ImageSourcePropType } from "react-native"
 export type RootStackParamList = {
     "Discover": any,
     "Place": any

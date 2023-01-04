@@ -1,5 +1,4 @@
 import { StatusBar } from 'expo-status-bar';
-import { Text, View, SafeAreaView } from 'react-native';
 import * as React from 'react';
 import {NavigationContainer}   from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -8,7 +7,7 @@ import Discover from './screen/Discover';
 import Place from './screen/Place';
 export default function App() {
 
-const Stack = createNativeStackNavigator()
+  const Stack = createNativeStackNavigator();
 
   return (
 

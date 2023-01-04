@@ -13,4 +13,4 @@ plugins:
   - react
   - '@typescript-eslint'
 rules: {        "semi": ["error", "always"],
-        "quotes": ["error", "double"]}
+        "quotes": [0, "double"]}

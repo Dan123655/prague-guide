@@ -1,0 +1,6 @@
+node_modules
+.expo
+.github
+babel.config.js
+navigation.d.ts
+tailwind.config.js

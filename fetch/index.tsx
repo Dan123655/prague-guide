@@ -1,12 +1,10 @@
-import { View, Text } from "react-native";
-import React from "react";
 import axios from "axios";
 import { mykey } from "../key";
 const getPlacesData = async (
-  bl_lat: string,
-  tr_lat: string,
-  bl_lng: string,
-    tr_lng: string,
+  bl_lat: string|null|undefined|number,
+  tr_lat: string|null|undefined|number,
+  bl_lng: string|null|undefined|number,
+    tr_lng: string|null|undefined|number,
   type:string
 ) => {
   try {
